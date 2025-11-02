@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,8 +19,13 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
-    @GetMapping("/articles")
+    @GetMapping("/api/articles")
     public ResponseEntity<List<ArticleDto>> getArticles() {
         return ResponseEntity.ok(articleService.getAllArticles());
+    }
+
+    @PostMapping("/api/articles")
+    public ResponseEntity<List<ArticleDto>> getArticlesByTitle(String title) {
+        return ResponseEntity.ok(articleService.getArticlesByTitle(title));
     }
 }
