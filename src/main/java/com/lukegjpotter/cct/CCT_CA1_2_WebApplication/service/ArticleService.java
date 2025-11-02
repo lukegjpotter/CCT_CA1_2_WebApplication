@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class ArticleService {
 
-    private Logger logger = LoggerFactory.getLogger(ArticleService.class);
+    private final Logger logger = LoggerFactory.getLogger(ArticleService.class);
     @Autowired
     private ArticleRepository articleRepository;
 

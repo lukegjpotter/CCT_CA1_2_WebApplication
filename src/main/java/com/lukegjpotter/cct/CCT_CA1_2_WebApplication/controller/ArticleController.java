@@ -15,17 +15,19 @@ import java.util.List;
 @RestController
 public class ArticleController {
 
-    private Logger logger = LoggerFactory.getLogger(ArticleController.class);
+    private final Logger logger = LoggerFactory.getLogger(ArticleController.class);
     @Autowired
     private ArticleService articleService;
 
     @GetMapping("/api/articles")
     public ResponseEntity<List<ArticleDto>> getArticles() {
+        logger.debug("Retrieving all articles");
         return ResponseEntity.ok(articleService.getAllArticles());
     }
 
     @PostMapping("/api/articles")
     public ResponseEntity<List<ArticleDto>> getArticlesByTitle(String title) {
+        logger.debug("Retrieving articles by title: {}", title);
         return ResponseEntity.ok(articleService.getArticlesByTitle(title));
     }
 }
