@@ -31,4 +31,9 @@ public class ArticleService {
         logger.debug("Getting article count");
         return articleRepository.count();
     }
+
+    public List<ArticleDto> getArticlesContaining(String searchTerm) {
+        logger.debug("Retrieving articles containing: {}", searchTerm);
+        return articleRepository.findByTitleContainingIgnoreCase(searchTerm).stream().map(Article::toDto).toList();
+    }
 }

@@ -31,6 +31,12 @@ public class ArticleController {
         return ResponseEntity.ok(articleService.getArticlesByTitle(title));
     }
 
+    @PostMapping("/api/articles/search")
+    public ResponseEntity<List<ArticleDto>> getArticlesContaining(String searchTerm) {
+        logger.debug("Retrieving articles containing: {}", searchTerm);
+        return ResponseEntity.ok(articleService.getArticlesContaining(searchTerm));
+    }
+
     @GetMapping("/api/articles/count")
     public ResponseEntity<Long> getArticleCount() {
         logger.debug("Retrieving article count");
