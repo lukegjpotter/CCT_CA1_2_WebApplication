@@ -26,12 +26,6 @@ public class ArticleController {
         return ResponseEntity.ok(articleService.getAllArticles());
     }
 
-    @PostMapping("/api/articles")
-    public ResponseEntity<List<ArticleDto>> getArticlesByTitle(@RequestParam String title) {
-        logger.debug("Retrieving articles by title: {}", title);
-        return ResponseEntity.ok(articleService.getArticlesByTitle(title));
-    }
-
     @PostMapping("/api/articles/search")
     public ResponseEntity<List<ArticleDto>> getArticlesContaining(@RequestParam String searchTerm) {
         logger.debug("Retrieving articles containing: {}", searchTerm);

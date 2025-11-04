@@ -23,13 +23,6 @@ public class ArticleService {
         return articleRepository.findAll().stream().map(Article::toDto).toList();
     }
 
-    public List<ArticleDto> getArticlesByTitle(String title) {
-        logger.debug("Retrieving articles by title: {}", title);
-        if (title == null || title.isEmpty()) return new ArrayList<>();
-
-        return articleRepository.findByTitle(title).stream().map(Article::toDto).toList();
-    }
-
     public Long getArticlesCount() {
         logger.debug("Getting article count");
         return articleRepository.count();

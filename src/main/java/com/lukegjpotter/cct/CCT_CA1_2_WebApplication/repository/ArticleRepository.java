@@ -9,7 +9,6 @@ import java.util.UUID;
 
 @Transactional(readOnly = true)
 public interface ArticleRepository extends JpaRepository<Article, UUID> {
-    List<Article> findByTitle(String title);
 
     List<Article> findByTitleContainingIgnoreCase(String searchTerm);
 }
