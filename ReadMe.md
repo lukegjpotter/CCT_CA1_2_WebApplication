@@ -1,6 +1,7 @@
 # CCT CA1 Secure Scripting & Programming Web App
 
-UPDATE: Spring Boot is too well configured out-of-the-box to handle SQL Injection and XSS attacks.
+UPDATE: Spring Boot is too well configured out-of-the-box to handle SQL Injection and XSS attacks. At this time, I'm not
+going to go into Spring Security and loosen the default configuration.
 
 This is a Web App purposely designed to be vulnerable to SQL Injection and XSS. There is also a non-vulnerable page. It
 is pretty straightforward in nature, it is just a search page and a search box, where users can try to SQL Inject and
