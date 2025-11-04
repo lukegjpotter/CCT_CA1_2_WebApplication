@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -26,13 +27,13 @@ public class ArticleController {
     }
 
     @PostMapping("/api/articles")
-    public ResponseEntity<List<ArticleDto>> getArticlesByTitle(String title) {
+    public ResponseEntity<List<ArticleDto>> getArticlesByTitle(@RequestParam String title) {
         logger.debug("Retrieving articles by title: {}", title);
         return ResponseEntity.ok(articleService.getArticlesByTitle(title));
     }
 
     @PostMapping("/api/articles/search")
-    public ResponseEntity<List<ArticleDto>> getArticlesContaining(String searchTerm) {
+    public ResponseEntity<List<ArticleDto>> getArticlesContaining(@RequestParam String searchTerm) {
         logger.debug("Retrieving articles containing: {}", searchTerm);
         return ResponseEntity.ok(articleService.getArticlesContaining(searchTerm));
     }
