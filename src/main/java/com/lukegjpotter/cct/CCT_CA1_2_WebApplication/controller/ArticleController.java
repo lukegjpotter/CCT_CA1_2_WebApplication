@@ -30,4 +30,10 @@ public class ArticleController {
         logger.debug("Retrieving articles by title: {}", title);
         return ResponseEntity.ok(articleService.getArticlesByTitle(title));
     }
+
+    @GetMapping("/api/articles/count")
+    public ResponseEntity<Long> getArticleCount() {
+        logger.debug("Retrieving article count");
+        return ResponseEntity.ok(articleService.getArticlesCount());
+    }
 }

@@ -26,4 +26,9 @@ public class ArticleService {
         logger.debug("Retrieving articles by title: {}", title);
         return articleRepository.findByTitle(title).stream().map(Article::toDto).toList();
     }
+
+    public Long getArticlesCount() {
+        logger.debug("Getting article count");
+        return articleRepository.count();
+    }
 }
