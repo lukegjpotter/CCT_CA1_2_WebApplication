@@ -23,6 +23,10 @@ To try some SQL Injection and XSS attacks, use the following:
 * http://localhost:8080/?searchterm=1%27%20or%201=1%20%3Cscript%3Ealert(1)%3C/script%3E
 * http://localhost:8080/?searchterm=1%27%20or%201=1%20%3Cimg%20src%3D%22x%22%20onerror%3Dalert(1)%3E
 
+We are aiming to do something similar to:
+
+    SELECT * FROM ARTICLE WHERE TITLE LIKE '%Gold%'; DROP TABLE ARTICLE
+
 ### H2 Database
 
 This Web App uses H2 Database. To see the database, go to http://localhost:8080/h2-console.  
