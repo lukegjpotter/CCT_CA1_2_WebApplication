@@ -34,4 +34,11 @@ public class ArticleService {
 
         return articleRepository.findByTitleContainingIgnoreCase(searchTerm).stream().map(Article::toDto).toList();
     }
+
+    public List<ArticleDto> rawQueryForArticlesContaining(String potentialSqlInjectionOrXss) {
+        logger.debug("Vulnerable Path: Retrieving articles containing: {}", potentialSqlInjectionOrXss);
+        if (potentialSqlInjectionOrXss == null || potentialSqlInjectionOrXss.isEmpty()) return new ArrayList<>();
+
+        return articleRepository.rawQueryByTitleContainingIgnoreCase(potentialSqlInjectionOrXss).stream().map(Article::toDto).toList();
+    }
 }

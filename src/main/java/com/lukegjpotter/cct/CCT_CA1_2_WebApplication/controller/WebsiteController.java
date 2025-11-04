@@ -24,4 +24,13 @@ public class WebsiteController {
         model.addAttribute("allArticles", articleService.getAllArticles());
         return "index";
     }
+
+    @GetMapping("/vulnerable")
+    public String vulnerable(@RequestParam(name = "searchterm", required = false, defaultValue = "") final String potentialSqlInjectionOrXss, Model model) {
+        logger.debug("Vulnerable Path: page request received");
+        model.addAttribute("searchTerm", potentialSqlInjectionOrXss);
+        model.addAttribute("searchResults", articleService.rawQueryForArticlesContaining(potentialSqlInjectionOrXss));
+        model.addAttribute("allArticles", articleService.getAllArticles());
+        return "vulnerable";
+    }
 }

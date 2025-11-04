@@ -1,8 +1,10 @@
 # CCT CA1 Secure Scripting & Programming Web App
 
+UPDATE: Spring Boot is too well configured out-of-the-box to handle SQL Injection and XSS attacks.
+
 This is a Web App purposely designed to be vulnerable to SQL Injection and XSS. There is also a non-vulnerable page. It
-is pretty simple in nature, it is just a search page and a search box, where users can try to SQL Inject and XSS Attack
-the pages.
+is pretty straightforward in nature, it is just a search page and a search box, where users can try to SQL Inject and
+XSS Attack the pages.
 
 ## Build, Run and Test.
 
@@ -16,16 +18,21 @@ In your browser go to:
 
 * http://localhost:8080/
 * http://localhost:8080/?searchterm=gold
+* http://localhost:8080/vulnerable
+* http://localhost:8080/vulnerable?searchterm=gold
 
 To try some SQL Injection and XSS attacks, use the following:
 
 * http://localhost:8080/?searchterm=1%27%20or%201=1%20--
 * http://localhost:8080/?searchterm=1%27%20or%201=1%20%3Cscript%3Ealert(1)%3C/script%3E
 * http://localhost:8080/?searchterm=1%27%20or%201=1%20%3Cimg%20src%3D%22x%22%20onerror%3Dalert(1)%3E
+* http://localhost:8080/vulnerable?searchterm=1%27%20or%201=1%20--
+* http://localhost:8080/vulnerable?searchterm=1%27%20or%201=1%20%3Cscript%3Ealert(1)%3C/script%3E
+* http://localhost:8080/vulnerable?searchterm=1%27%20or%201=1%20%3Cimg%20src%3D%22x%22%20onerror%3Dalert(1)%3E
 
 We are aiming to do something similar to:
 
-    SELECT * FROM ARTICLE WHERE TITLE LIKE '%Gold%'; DROP TABLE ARTICLE
+    SELECT * FROM ARTICLE WHERE TITLE LIKE %Gold'; DROP TABLE ARTICLE
 
 ### H2 Database
 
