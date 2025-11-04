@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -24,6 +25,8 @@ public class ArticleService {
 
     public List<ArticleDto> getArticlesByTitle(String title) {
         logger.debug("Retrieving articles by title: {}", title);
+        if (title == null || title.isEmpty()) return new ArrayList<>();
+
         return articleRepository.findByTitle(title).stream().map(Article::toDto).toList();
     }
 
@@ -34,6 +37,8 @@ public class ArticleService {
 
     public List<ArticleDto> getArticlesContaining(String searchTerm) {
         logger.debug("Retrieving articles containing: {}", searchTerm);
+        if (searchTerm == null || searchTerm.isEmpty()) return new ArrayList<>();
+
         return articleRepository.findByTitleContainingIgnoreCase(searchTerm).stream().map(Article::toDto).toList();
     }
 }

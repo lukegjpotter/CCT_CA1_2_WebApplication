@@ -3,15 +3,45 @@
 <head>
     <title>Pokémon Reviews Search Site</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- ToDo: Add Bootstrap -->
 </head>
 <body>
 <h1>Pokémon Reviews Search</h1>
 <p>Try to Search, don't SQL Inject us tho.</p>
-<p th:unless="${(searchTerm.isEmpty())}" th:text="|Searching For: ${searchTerm}.|"></p>
 
-<form action="#" th:action="@{/api/articles/search}" th:object="${article}" method="post">
-    <input type="text" th:field="*{searchTerm}" id="searchTerm" placeholder="Search for Pokémon reviews"/>
-</form>
+<p th:if="${!searchTerm.isEmpty()}"
+   th:text="|There ${(searchResults.size() == 1) ? 'is' : 'are'} ${searchResults.size()} ${(searchResults.size() == 1) ? 'article' : 'articles'} containing '${searchTerm}'.|"></p>
+<table th:if="${!searchResults.isEmpty()}" id="searchResultsTable">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Summary</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="article : ${searchResults}">
+        <td th:text="${article.title}"></td>
+        <td th:text="${article.summary}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<p th:text="|${(allArticles.isEmpty()) ? 'There are no articles in the Database, hopefully we have not been SQL Injected.' : 'There are ' + allArticles.size() + ' articles in DB.'}|"></p>
+
+<table th:if="${!allArticles.isEmpty()}" id="allArticlesTable">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Summary</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="article : ${allArticles}">
+        <td th:text="${article.title}"></td>
+        <td th:text="${article.summary}"></td>
+    </tr>
+    </tbody>
+</table>
 
 </body>
 </html>
