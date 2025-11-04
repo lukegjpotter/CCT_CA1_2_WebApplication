@@ -1,11 +1,17 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
     <title>Pokémon Reviews Search Site</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
 <h1>Pokémon Reviews Search</h1>
-<p th:text="|Searching For: ${searchTerm}.|"></p>
+<p>Try to Search, don't SQL Inject us tho.</p>
+<p th:unless="${(searchTerm.isEmpty())}" th:text="|Searching For: ${searchTerm}.|"></p>
+
+<form action="#" th:action="@{/api/articles/search}" th:object="${article}" method="post">
+    <input type="text" th:field="*{searchTerm}" id="searchTerm" placeholder="Search for Pokémon reviews"/>
+</form>
+
 </body>
 </html>
